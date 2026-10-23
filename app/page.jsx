@@ -397,6 +397,30 @@ export default function Page() {
 
       {/* ============ FOOTER ============ */}
       <footer className="mx-auto max-w-[1120px] px-4 pt-10">
+        {/* Contact form */}
+        <section id="contact" className="mb-14 grid gap-8 rounded-[28px] border border-white/[.06] bg-[linear-gradient(180deg,#11261d,#0e1c16)] p-5 sm:p-8 lg:grid-cols-[1fr_1.4fr] lg:p-12">
+          <div>
+            <div className="eyebrow">Contact us</div>
+            <h2 className="h2">Questions, bugs<br />or ideas?</h2>
+            <p className="lead">Found a bug, have an idea, or need help? Send us a message.</p>
+            <a href="mailto:rohitraj776407@gmail.com" className="mt-6 inline-flex items-center gap-2 text-sm text-mint hover:text-lime">
+              <Svg size={16}><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></Svg>
+              rohitraj776407@gmail.com
+            </a>
+          </div>
+          <div className="overflow-hidden rounded-2xl bg-white">
+            <iframe
+              src="https://app.ovoform.com/f/sKtGaog9"
+              title="Contact Splitlee"
+              width="100%"
+              height="600"
+              loading="lazy"
+              allow="fullscreen"
+              className="block h-[600px] w-full max-w-full border-0"
+            />
+          </div>
+        </section>
+
         <div className="grid gap-8 px-2 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr]">
           <div>
             <Logo />
@@ -405,7 +429,7 @@ export default function Page() {
           {[
             ['Product', [['Features', '#features'], ['Widget', '#features'], ['Splitting', '#friends'], ['Download', '#download']]],
             ['Help', [['Privacy policy', '#'], ['Terms', '#']]],
-            ['Contact', [['Email us', 'mailto:rohitraj776407@gmail.com']]],
+            ['Contact', [['Contact form', '#contact'], ['Email us', 'mailto:rohitraj776407@gmail.com']]],
           ].map(([h, links]) => (
             <div key={h}>
               <h4 className="mb-2 text-[11px] font-medium text-muted">{h}</h4>
