@@ -1,3 +1,5 @@
+import Widget from './Widget';
+
 /* Splitlee app screens recreated in HTML/CSS (styles in app/globals.css → .phone / .scr). */
 
 const Ic = {
@@ -311,15 +313,7 @@ const Lock = () => (
       <div style={{ fontSize: 9, opacity: 0.8 }}>Thu, 22 Oct</div>
       <div style={{ fontSize: 54, fontWeight: 300, letterSpacing: '-.04em', lineHeight: 1.05 }}>9:41</div>
     </div>
-    <div style={{ position: 'relative', margin: '14px 12px 0', background: 'rgba(10,20,16,.72)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 18, padding: 10 }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 7, color: '#9fb0aa' }}><span>Today · Oct 22</span><span style={{ color: '#2fce96' }}>● Splitlee</span></div>
-      <div style={{ fontSize: 6, letterSpacing: '.1em', color: '#9fb0aa', marginTop: 4 }}>TOTAL EXPENSES</div>
-      <div style={{ fontSize: 18, fontWeight: 800, letterSpacing: '-.03em' }}>₹1,01,694</div>
-      <div className="row2">
-        <div style={{ background: 'rgba(255,255,255,.06)', borderRadius: 9, padding: '5px 7px' }}><small style={{ display: 'block', fontSize: 6, color: '#9fb0aa' }}>Spent today</small><b style={{ fontSize: 10 }}>₹237</b></div>
-        <div style={{ background: 'rgba(255,255,255,.06)', borderRadius: 9, padding: '5px 7px' }}><small style={{ display: 'block', fontSize: 6, color: '#9fb0aa' }}>Owed to you</small><b style={{ fontSize: 10, color: '#2fce96' }}>₹43,887</b></div>
-      </div>
-    </div>
+    <div style={{ position: 'relative', margin: '14px 10px 0' }}><Widget size={5.6} /></div>
     <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 12, padding: '18px 22px 0' }}>
       {APPS.map(([c, g], i) => (
         <div key={i} style={{ aspectRatio: '1', borderRadius: 12, background: c, color: c === '#ffffff' ? '#0d1411' : '#fff', display: 'grid', placeItems: 'center', fontSize: 13, fontWeight: 700 }}>{g}</div>

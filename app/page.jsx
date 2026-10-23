@@ -1,17 +1,23 @@
 import Phone from '@/components/Phone';
 import Reveal from '@/components/Reveal';
+import Widget from '@/components/Widget';
+import WidgetCallouts from '@/components/WidgetCallouts';
+import StackScroll from '@/components/StackScroll';
+import HeroParallax from '@/components/HeroParallax';
 
 const DOWNLOAD_URL = '#'; // TODO: put the APK / Play Store link here
 
-const sm = { zoom: 0.86 };
-const xs = { zoom: 0.76 };
+const sm = { zoom: 'var(--pz-sm)' };
+const xs = { zoom: 'var(--pz-xs)' };
+const fanSm = { zoom: 0.86 };
+const fanXs = { zoom: 0.76 };
 
 const Svg = ({ children, size = 18, sw = 2.2 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">{children}</svg>
 );
 
 const Logo = ({ big }) => (
-  <a href="#" className={`flex items-center gap-2 font-mono font-extrabold text-lime ${big ? 'text-lg' : 'text-[15px]'}`}>splitlee</a>
+  <a href="#" className={`flex items-center gap-2 font-brand font-normal leading-none text-lime ${big ? 'text-xl' : 'text-[17px]'}`}>splitlee</a>
 );
 
 const Checks = ({ items, dark }) => (
@@ -41,17 +47,17 @@ const PhoneCol = ({ screen, className = '', style = sm }) => (
 );
 
 /* floating tile used around the hero wordmark */
-const Tile = ({ className, children }) => (
-  <span className={`absolute grid place-items-center rounded-2xl font-sans text-sm font-extrabold tracking-normal shadow-[0_20px_40px_-12px_rgba(0,0,0,.6)] ${className}`}>{children}</span>
+/* d = how far it drifts with the mouse (px); negative moves the other way */
+const drift = (d) => ({ '--tw-translate-x': `calc(var(--mx, 0) * ${d}px)`, '--tw-translate-y': `calc(var(--my, 0) * ${d}px)` });
+const MOVE = 'transform transition-transform duration-500 ease-out';
+
+const Tile = ({ className, children, d = 16 }) => (
+  <span style={drift(d)} className={`absolute grid place-items-center rounded-2xl font-sans text-sm font-extrabold tracking-normal shadow-[0_20px_40px_-12px_rgba(0,0,0,.6)] ${MOVE} ${className}`}>{children}</span>
 );
 
-/* widget callout label */
-const Callout = ({ side, title, sub, className }) => (
-  <div className={`absolute hidden items-center gap-2 lg:flex ${side === 'l' ? 'flex-row-reverse text-right' : ''} ${className}`}>
-    <span className="h-2.5 w-2.5 flex-none rounded-full bg-mint shadow-[0_0_0_4px_rgba(47,206,150,.18)]" />
-    <span className="h-px w-10 bg-mint/40" />
-    <div className="w-[140px]"><b className="block text-xs">{title}</b><span className="text-[11px] text-muted">{sub}</span></div>
-  </div>
+/* small app-style pill */
+const Chip = ({ className, children, d = 20 }) => (
+  <span style={drift(d)} className={`absolute hidden items-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1.5 font-sans text-xs font-bold tracking-normal shadow-[0_16px_32px_-12px_rgba(0,0,0,.6)] lg:inline-flex ${MOVE} ${className}`}>{children}</span>
 );
 
 const FEATURES = [
@@ -76,10 +82,12 @@ export default function Page() {
   return (
     <>
       <Reveal />
+      <StackScroll />
+      <HeroParallax />
 
-      <main className="mx-auto max-w-[1120px] px-4">
+      <main className="mx-auto max-w-[1440px] px-4">
         {/* ============ HERO ============ */}
-        <section className="relative mt-4 overflow-hidden rounded-[28px] bg-[radial-gradient(90%_70%_at_50%_30%,#1a3a2b_0%,#10241b_45%,#0b1712_100%)] px-5 pb-10 pt-5 sm:px-8">
+        <section id="hero" className="relative mt-4 flex snap-start scroll-mt-4 flex-col overflow-hidden rounded-[28px] lg:min-h-[calc(100svh-32px)] bg-[radial-gradient(90%_70%_at_50%_30%,#1a3a2b_0%,#10241b_45%,#0b1712_100%)] px-5 pb-10 pt-5 sm:px-8">
           <nav className="flex items-center justify-between">
             <Logo />
             <div className="hidden gap-6 text-xs text-muted md:flex">
@@ -90,13 +98,20 @@ export default function Page() {
             <a href="#download" className="rounded-full bg-mint px-3.5 py-2 text-[11px] font-bold text-ink">Download for Android</a>
           </nav>
 
-          <div className="relative mx-auto mt-16 max-w-[860px] sm:mt-20">
-            <Tile className="-top-6 left-[8%] h-11 w-11 -rotate-12 bg-lime text-ink sm:-top-10 sm:h-14 sm:w-14"><Svg size={22}><rect x="3" y="6" width="18" height="13" rx="2" /><path d="M7 12h4" /></Svg></Tile>
-            <Tile className="-top-8 right-[10%] h-10 w-10 rotate-12 border border-white/10 bg-[#1d3a2d] text-mint sm:-top-12 sm:h-12 sm:w-12"><Svg size={18}><path d="M3 12h4l3-8 4 16 3-8h4" /></Svg></Tile>
-            <Tile className="left-0 top-[46%] -rotate-[8deg] rounded-xl bg-mint px-2.5 py-1.5 text-[11px] text-ink sm:-left-6 sm:px-3 sm:text-sm">split</Tile>
-            <Tile className="right-0 top-[52%] rotate-[6deg] rounded-xl border border-white/10 bg-[#1a2d24] px-2.5 py-1.5 font-mono text-[11px] text-lime sm:-right-6 sm:text-xs">₹0 ▮</Tile>
+          <div className="relative mx-auto mt-16 w-full max-w-[860px] sm:mt-20 lg:mt-auto">
+            <Tile d={-20} className="hidden sm:grid -top-6 left-[8%] h-11 w-11 -rotate-12 bg-lime text-ink sm:-top-10 sm:h-14 sm:w-14 lg:-top-16 lg:left-[4%]"><Svg size={22}><rect x="3" y="6" width="18" height="13" rx="2" /><path d="M7 12h4" /></Svg></Tile>
+            <Tile d={-22} className="-top-8 right-[10%] h-10 w-10 rotate-12 border border-white/10 bg-[#1d3a2d] text-mint sm:-top-12 sm:h-12 sm:w-12"><Svg size={18}><path d="M3 12h4l3-8 4 16 3-8h4" /></Svg></Tile>
+            <Tile d={34} className="hidden sm:grid left-0 top-[46%] -rotate-[8deg] rounded-xl bg-mint px-2.5 py-1.5 text-[11px] text-ink sm:-left-6 sm:px-3 sm:text-sm">split</Tile>
+            <Tile d={-30} className="hidden sm:grid right-0 top-[52%] rotate-[6deg] rounded-xl border border-white/10 bg-[#1a2d24] px-2.5 py-1.5 font-mono text-[11px] text-lime sm:-right-6 sm:text-xs">₹1,057</Tile>
 
-            <h1 className="text-center font-mono text-[clamp(52px,14vw,150px)] font-extrabold leading-none tracking-[-.05em] text-lime drop-shadow-[0_10px_40px_rgba(200,242,109,.18)]">splitlee</h1>
+            <Chip d={18} className="-top-[64px] left-[34%] -rotate-3 border-white/10 bg-[#16241e] text-white"><span className="h-2 w-2 rounded-full bg-coral" />Zomato ₹237</Chip>
+            <Chip d={-26} className="-left-[15%] -top-[34px] rotate-[-6deg] border-transparent bg-white text-ink">UPI</Chip>
+            <Chip d={24} className="-right-[13%] top-[14%] rotate-[5deg] border-white/10 bg-[#16241e] text-white">✈ Goa trip</Chip>
+            <Chip d={-18} className="-top-[60px] right-[30%] rotate-[4deg] border-mint/40 bg-transparent text-mint">÷ 3 ways</Chip>
+            <Chip d={30} className="-bottom-[34px] -left-[7%] rotate-[3deg] border-white/10 bg-[#16241e] text-mint">+₹263 owed</Chip>
+            <Chip d={-24} className="-bottom-[44px] -right-[5%] -rotate-[4deg] border-transparent bg-lime text-ink">settled ✓</Chip>
+
+            <h1 style={drift(-6)} className="transform transition-transform duration-700 ease-out pb-[.3em] pt-[.1em] text-center font-brand text-[clamp(44px,11vw,128px)] font-normal leading-[1.25] text-lime drop-shadow-[0_10px_40px_rgba(200,242,109,.18)]">splitlee</h1>
           </div>
 
           <p className="mx-auto mt-6 max-w-[520px] text-center text-sm text-[#c5d0cb]">
@@ -107,20 +122,21 @@ export default function Page() {
             <a href="#how" className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold">See how it works</a>
           </div>
 
-          <div className="relative mt-12 flex flex-wrap items-end justify-between gap-4">
-            <div className="rv rounded-2xl border border-white/[.07] bg-[#0f1f18]/80 px-4 py-3 backdrop-blur">
+          <div className="relative mt-12 flex flex-wrap items-end justify-between gap-4 lg:mt-auto">
+            <div style={drift(12)} className={`rounded-2xl border border-white/[.07] bg-[#0f1f18]/80 px-4 py-3 backdrop-blur ${MOVE}`}>
               <b className="block text-lg">+₹1,371</b>
               <span className="text-[11px] text-muted">settled this week · Saikat</span>
             </div>
-            <div className="rv flex items-center gap-2 rounded-full border border-white/[.07] bg-[#0f1f18]/80 px-3 py-2 text-[11px] text-[#c5d0cb]">
+            <div style={drift(-10)} className={`flex items-center gap-2 rounded-full border border-white/[.07] bg-[#0f1f18]/80 px-3 py-2 text-[11px] text-[#c5d0cb] ${MOVE}`}>
               <span className="grid h-5 w-5 place-items-center rounded-md bg-mint text-[10px] font-bold text-ink">₹</span>
               ₹426 spent at Abuz · <span className="text-mint">Split?</span>
             </div>
-            <Tile className="!static h-11 w-11 rotate-6 bg-lime text-ink"><Svg size={20}><path d="M5 12l4 4 10-10" /></Svg></Tile>
+            <Tile d={-16} className="!static h-11 w-11 rotate-6 bg-lime text-ink"><Svg size={20}><path d="M5 12l4 4 10-10" /></Svg></Tile>
           </div>
         </section>
 
         {/* ============ 01 EVERY RUPEE ============ */}
+        <span aria-hidden="true" className="snap-mark" />
         <section id="features" className="panel bg-glass text-ink">
           <Split light>
             <div className="rv">
@@ -138,6 +154,7 @@ export default function Page() {
         </section>
 
         {/* ============ 02 WIDGET ============ */}
+        <span aria-hidden="true" className="snap-mark" />
         <section className="panel gpanel">
           <div className="rv text-center">
             <div className="eyebrow justify-center">02 — The widget</div>
@@ -145,31 +162,13 @@ export default function Page() {
             <p className="lead mx-auto">No need to open the app. The Splitlee widget shows what you spent, what you&apos;re owed, and how your month is going.</p>
           </div>
 
-          <div className="rv relative mx-auto mt-10 max-w-[760px]">
-            <Callout side="l" title="Today at a glance" sub="Spent today, live" className="-left-6 top-6" />
-            <Callout side="l" title="Daily average" sub="Trips kept out" className="-left-6 top-[44%]" />
-            <Callout side="l" title="Today's category" sub="Food, travel…" className="-left-6 bottom-6" />
-            <Callout title="Quick add" sub="One tap to log cash" className="-right-6 top-6" />
-            <Callout title="Owed to you" sub="Across all friends" className="-right-6 top-[44%]" />
-            <Callout title="Who owes you" sub="Tap to remind" className="-right-6 bottom-6" />
-
-            <div className="mx-auto max-w-[400px] rounded-3xl border border-white/[.07] bg-[#0f1c16] p-5 shadow-[0_30px_60px_-20px_rgba(0,0,0,.7)]">
-              <div className="flex items-center justify-between text-[11px] text-muted">
-                <span>Today · Oct 22</span>
-                <span className="grid h-6 w-6 place-items-center rounded-full bg-mint text-sm text-ink">+</span>
-              </div>
-              <small className="mt-1 block text-[10px] tracking-[.12em] text-muted">TOTAL EXPENSES</small>
-              <div className="text-[34px] font-extrabold tracking-[-.03em]">₹1,01,694</div>
-              <small className="text-[11px] text-mint">▼ ₹2,136 vs yesterday</small>
-              <div className="mt-4 grid grid-cols-2 gap-2">
-                {[['Spent today', '₹237', ''], ['Daily average', '₹2,854', ''], ['Owed to you', '₹43,887', 'text-mint'], ['You owe', '₹0', 'text-amber']].map(([l, v, c]) => (
-                  <div key={l} className="rounded-xl bg-white/[.05] px-3 py-2"><small className="block text-[10px] text-muted">{l}</small><b className={`text-[15px] ${c}`}>{v}</b></div>
-                ))}
-              </div>
-            </div>
+          <div className="rv mt-8">
+            <WidgetCallouts>
+              <Widget size="clamp(7px,min(1.9vw,1.6vh),16px)" />
+            </WidgetCallouts>
           </div>
 
-          <div className="rv mt-10 grid gap-4 md:grid-cols-[1fr_1.3fr_1fr]">
+          <div className="rv mt-8 grid gap-4 md:grid-cols-[1fr_1.3fr_1fr]">
             <div className="flex flex-col justify-end rounded-2xl p-4">
               <span className="mb-3 text-amber"><Svg size={20}><path d="M13 2 4 14h7l-1 8 9-12h-7z" /></Svg></span>
               <b className="text-sm">Updates itself</b>
@@ -185,10 +184,10 @@ export default function Page() {
               <p className="mt-1 text-xs opacity-70">Read on-device. Nothing leaves your phone.</p>
             </div>
           </div>
-          <p className="mt-6 text-center text-[11px] text-muted">Widget sizes: 4×2 and 2×2. Long-press your home screen → Widgets → Splitlee.</p>
         </section>
 
         {/* ============ 03 GLANCE ============ */}
+        <span aria-hidden="true" className="snap-mark" />
         <section className="panel bg-glass text-ink">
           <Split rev light>
             <PhoneCol screen="lock" className="order-2 lg:order-none" />
@@ -201,28 +200,10 @@ export default function Page() {
           </Split>
         </section>
 
-        {/* ============ 04 TYPE ============ */}
-        <section className="panel bg-lime text-ink">
-          <div className="eyebrow">04 — Type</div>
-          <div className="rv grid items-end gap-8 lg:grid-cols-[1.1fr_1fr]">
-            <div>
-              <div className="text-[clamp(130px,17vw,210px)] font-black leading-[.8] tracking-[-.07em]">Aa</div>
-              <p className="mt-4 text-xs opacity-70"><b>Inter</b> — clean numbers for money that moves fast.</p>
-            </div>
-            <div>
-              <div className="font-mono text-[clamp(34px,4vw,48px)] font-bold leading-tight">₹123<br />!@%&amp;</div>
-              <div className="mt-4">
-                {[['Black', '₹1,01,694', 'font-black'], ['Semibold', 'Owed to you', 'font-semibold'], ['Regular', 'Groceries · Food', 'font-normal'], ['Light', '8:41', 'font-light']].map(([w, s, c]) => (
-                  <div key={w} className="flex justify-between border-b border-ink/15 py-2 text-[13px]"><span className="opacity-60">{w}</span><span className={c}>{s}</span></div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ============ 05 SMS → SPLIT ============ */}
+        {/* ============ 04 SMS → SPLIT ============ */}
+        <span aria-hidden="true" className="snap-mark" />
         <section id="how" className="panel gpanel">
-          <div className="rv"><div className="eyebrow">05 — From SMS to split</div><h2 className="h2">From bank SMS to split in one<br />tap.</h2></div>
+          <div className="rv"><div className="eyebrow">04 — From SMS to split</div><h2 className="h2">From bank SMS to split in one<br />tap.</h2></div>
           <div className="rv mt-10 grid items-center gap-4 lg:grid-cols-[1fr_auto_1fr_auto_1fr]">
             <div>
               <div className="notif !max-w-none">
@@ -256,10 +237,11 @@ export default function Page() {
           </div>
         </section>
 
-        {/* ============ 06 HOME HISTORY FRIENDS ============ */}
+        {/* ============ 05 HOME HISTORY FRIENDS ============ */}
+        <span aria-hidden="true" className="snap-mark" />
         <section className="panel gpanel">
           <div className="grid items-end gap-4 lg:grid-cols-[1fr_1fr]">
-            <div className="rv"><div className="eyebrow">06 — The app</div><h2 className="h2">Home, history, friends.</h2></div>
+            <div className="rv"><div className="eyebrow">05 — The app</div><h2 className="h2">Home, history, friends.</h2></div>
             <p className="rv text-[13px] text-muted">Everything you open the app for — this month, every expense, who owes what — exactly where your thumb expects it.</p>
           </div>
           <div className="mt-10 grid justify-items-center gap-10 md:grid-cols-3 md:gap-4">
@@ -272,11 +254,12 @@ export default function Page() {
           </div>
         </section>
 
-        {/* ============ 07 GET PAID BACK ============ */}
+        {/* ============ 06 GET PAID BACK ============ */}
+        <span aria-hidden="true" className="snap-mark" />
         <section id="friends" className="panel bg-glass text-ink">
           <Split light>
             <div className="rv">
-              <div className="eyebrow">07 — Splitting</div>
+              <div className="eyebrow">06 — Splitting</div>
               <h2 className="h2">Get paid back<br />without chasing.</h2>
               <p className="lead">Split a bill with anyone. Splitlee keeps the running balance and sends a reminder with your UPI QR, so paying you back takes them one tap.</p>
               <div className="mt-6 flex max-w-[340px] items-center gap-3 rounded-2xl bg-ink px-3.5 py-3 text-white shadow-[0_20px_40px_-20px_rgba(13,20,17,.6)]">
@@ -289,12 +272,13 @@ export default function Page() {
           </Split>
         </section>
 
-        {/* ============ 08 MAP ============ */}
+        {/* ============ 07 MAP ============ */}
+        <span aria-hidden="true" className="snap-mark" />
         <section className="panel gpanel">
           <Split rev>
             <PhoneCol screen="map" className="order-2 lg:order-none" />
             <div className="rv">
-              <div className="eyebrow">08 — Map</div>
+              <div className="eyebrow">07 — Map</div>
               <h2 className="h2">See where your<br />money went.</h2>
               <p className="lead">Every expense pinned where it happened. Zoom into your neighbourhood and see which street is eating your month.</p>
               <Checks dark items={[
@@ -306,11 +290,12 @@ export default function Page() {
           </Split>
         </section>
 
-        {/* ============ 09 INSIGHTS ============ */}
+        {/* ============ 08 INSIGHTS ============ */}
+        <span aria-hidden="true" className="snap-mark" />
         <section className="panel bg-lime text-ink">
           <Split light>
             <div className="rv">
-              <div className="eyebrow">09 — Insights</div>
+              <div className="eyebrow">08 — Insights</div>
               <h2 className="h2">Know your pace<br />before the month<br />ends.</h2>
               <p className="lead">Splitlee projects where your month will land, shows your biggest day, and breaks spending into categories.</p>
               <div className="mt-8 flex gap-12"><MonoStat v="~₹1.27L" l="On pace by month end" /><MonoStat v="98" l="Transactions this month" /></div>
@@ -319,12 +304,13 @@ export default function Page() {
           </Split>
         </section>
 
-        {/* ============ 10 TRIPS ============ */}
+        {/* ============ 09 TRIPS ============ */}
+        <span aria-hidden="true" className="snap-mark" />
         <section className="panel gpanel">
           <Split rev>
             <PhoneCol screen="trips" className="order-2 lg:order-none" />
             <div className="rv">
-              <div className="eyebrow">10 — Trips</div>
+              <div className="eyebrow">09 — Trips</div>
               <h2 className="h2">Goa doesn&apos;t<br />wreck your<br />monthly average.</h2>
               <p className="lead">Start a trip and its expenses go into their own book. Your everyday average stays honest.</p>
               <div className="mt-6 grid max-w-[340px] grid-cols-2 gap-3">
@@ -341,9 +327,10 @@ export default function Page() {
           </Split>
         </section>
 
-        {/* ============ 11 SMALL THINGS ============ */}
+        {/* ============ 10 SMALL THINGS ============ */}
+        <span aria-hidden="true" className="snap-mark" />
         <section className="panel gpanel">
-          <div className="rv"><div className="eyebrow">11 — Details</div><h2 className="h2">Small things that add up.</h2></div>
+          <div className="rv"><div className="eyebrow">10 — Details</div><h2 className="h2">Small things that add up.</h2></div>
           <div className="rv mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
             {FEATURES.map(([t, d, tone, icon]) => (
               <div key={t} className={`flex min-h-[150px] flex-col rounded-2xl p-4 ${TILE[tone]}`}>
@@ -355,50 +342,34 @@ export default function Page() {
           </div>
         </section>
 
-        {/* ============ 12 COLOUR ============ */}
-        <section className="panel bg-glass text-ink">
-          <div className="rv"><div className="eyebrow">12 — Colour</div><h2 className="h2">Mint for money. Forest for calm.</h2></div>
-          <div className="rv mt-8 grid h-[200px] grid-cols-[2fr_1fr_1fr_1fr_1fr] overflow-hidden rounded-2xl">
-            {[['Forest', '#123226', 'text-white'], ['Mint', '#2FCE96', ''], ['Lime', '#C8F26D', ''], ['Glass', '#9FEBC8', ''], ['Night', '#050706', 'text-white']].map(([n, hex, c]) => (
-              <div key={n} className={`flex flex-col justify-between p-3 ${c}`} style={{ background: hex }}>
-                <span className="text-xs font-bold">{n}</span>
-                <small className="font-mono text-[10px] opacity-70">{hex}</small>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ============ 13 PHONE FAN ============ */}
-        <section className="panel gpanel !py-14">
-          <div className="rv flex items-center justify-center">
-            <Phone screen="history" style={xs} className="-mr-6 hidden -rotate-[14deg] translate-y-6 lg:block" />
-            <Phone screen="lock" style={sm} className="z-[1] -mr-6 hidden -rotate-[7deg] sm:block" />
-            <Phone screen="home" style={sm} className="z-[2] rotate-[2deg]" />
-            <Phone screen="map" style={xs} className="-ml-6 hidden rotate-[12deg] translate-y-8 sm:block" />
-          </div>
-        </section>
-
-        {/* ============ CTA ============ */}
-        <section id="download" className="panel bg-lime !py-10 text-ink">
-          <div className="rv flex flex-wrap items-center justify-between gap-6">
+        {/* ============ DOWNLOAD ============ */}
+        <span aria-hidden="true" className="snap-mark" />
+        <section id="download" className="panel on-light bg-lime text-ink">
+          <div className="rv flex flex-wrap items-end justify-between gap-6">
             <div>
               <div className="eyebrow">Get Splitlee</div>
               <h2 className="h2">Add the widget.<br />Stop doing math.</h2>
             </div>
-            <div className="flex flex-col items-end gap-2">
-              <a href={DOWNLOAD_URL} className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-xs font-bold text-lime">
-                <Svg size={14} sw={2.6}><path d="M12 3v12M7 10l5 5 5-5M5 21h14" /></Svg>Get it for Android
+            <div className="flex flex-col items-start gap-2 sm:items-end">
+              <a href={DOWNLOAD_URL} className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-bold text-lime">
+                <Svg size={16} sw={2.6}><path d="M12 3v12M7 10l5 5 5-5M5 21h14" /></Svg>Get it for Android
               </a>
               <small className="text-[11px] opacity-60">Free · works offline</small>
             </div>
+          </div>
+          <div className="rv mt-10 flex items-center justify-center [@media(max-height:820px)]:[zoom:.85]">
+            <Phone screen="history" style={fanXs} className="-mr-6 hidden -rotate-[14deg] translate-y-6 lg:block" />
+            <Phone screen="lock" style={fanSm} className="z-[1] -mr-6 hidden -rotate-[7deg] sm:block" />
+            <Phone screen="home" style={fanSm} className="z-[2] rotate-[2deg]" />
+            <Phone screen="map" style={fanXs} className="-ml-6 hidden rotate-[12deg] translate-y-8 sm:block" />
           </div>
         </section>
       </main>
 
       {/* ============ FOOTER ============ */}
-      <footer className="mx-auto max-w-[1120px] px-4 pt-10">
+      <footer className="relative z-10 mx-auto max-w-[1440px] snap-end bg-bg px-4 pt-4">
         {/* Contact form */}
-        <section id="contact" className="mb-14 grid gap-8 rounded-[28px] border border-white/[.06] bg-[linear-gradient(180deg,#11261d,#0e1c16)] p-5 sm:p-8 lg:grid-cols-[1fr_1.4fr] lg:p-12">
+        <section id="contact" className="mb-14 grid snap-start scroll-mt-4 lg:min-h-[calc(100svh-32px)] lg:content-center gap-8 rounded-[28px] border border-white/[.06] bg-[linear-gradient(180deg,#11261d,#0e1c16)] p-5 sm:p-8 lg:grid-cols-[1fr_1.4fr] lg:p-12">
           <div>
             <div className="eyebrow">Contact us</div>
             <h2 className="h2">Questions, bugs<br />or ideas?</h2>
@@ -437,7 +408,7 @@ export default function Page() {
             </div>
           ))}
         </div>
-        <div className="select-none overflow-hidden text-center font-mono text-[clamp(70px,19vw,230px)] font-extrabold leading-[.85] tracking-[-.05em] text-[#14231c]">splitlee</div>
+        <div className="select-none overflow-hidden pb-[.25em] pt-[.1em] text-center font-brand text-[clamp(56px,15vw,190px)] font-normal leading-[1.3] text-[#14231c]">splitlee</div>
       </footer>
     </>
   );

@@ -22,6 +22,7 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+        brand: ['"Playwrite IT Trad Variable"', 'cursive'],
       },
       borderRadius: { panel: '32px' },
       letterSpacing: { tightest: '-0.035em', mark: '-0.06em' },
