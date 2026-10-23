@@ -86,16 +86,16 @@ export default function Widget({ size = 14, className = '', style }) {
       <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr 1fr', gap: '1.1em', alignItems: 'center', marginTop: '0.4em' }}>
         <div data-anchor="total">
           <div style={{ fontSize: '1.2em', letterSpacing: '.08em', color: '#b7c0bc', fontWeight: 500 }}>TOTAL EXPENSES</div>
-          <div style={{ fontSize: '3.05em', fontWeight: 700, letterSpacing: '-.02em', lineHeight: 1.15, whiteSpace: 'nowrap' }}>₹1,01,694</div>
-          <div style={{ fontSize: '1.2em', color: '#2fce96', fontWeight: 500, whiteSpace: 'nowrap' }}>▼ ₹2,136 vs yesterday</div>
+          <div style={{ fontSize: '3.05em', fontWeight: 700, letterSpacing: '-.02em', lineHeight: 1.15, whiteSpace: 'nowrap' }}>₹48,230</div>
+          <div style={{ fontSize: '1.2em', color: '#2fce96', fontWeight: 500, whiteSpace: 'nowrap' }}>▼ ₹1,140 vs yesterday</div>
         </div>
         <Pill icon={I.receipt} iconBg="#1f4d3a" iconColor="#2fce96" value="₹237" label="Spent today" anchor="spent" />
-        <Pill icon={I.trend} iconBg="#34405a" iconColor="#6f9cff" value="₹2,854" label="Daily average" anchor="avg" />
+        <Pill icon={I.trend} iconBg="#34405a" iconColor="#6f9cff" value="₹2,190" label="Daily average" anchor="avg" />
       </div>
 
       {/* balances */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.1em', marginTop: '1.3em' }}>
-        <Balance tone="green" icon={I.down} label="Owed to you" value="₹43,887" anchor="owed" />
+        <Balance tone="green" icon={I.down} label="Owed to you" value="₹6,400" anchor="owed" />
         <Balance tone="amber" icon={I.up} label="You owe" value="₹0" anchor="owe" />
       </div>
     </div>

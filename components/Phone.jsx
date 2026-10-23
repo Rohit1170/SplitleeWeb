@@ -61,19 +61,19 @@ const HomeBody = () => (
     <div className="hcard">
       <div className="lbl">THIS MONTH</div>
       <span className="month">Oct ▾</span>
-      <div className="amt">₹1,01,694<sup>+₹237</sup></div>
-      <span className="chipz">₹2,854/day <em>▼ 12%</em></span>
+      <div className="amt">₹48,230<sup>+₹237</sup></div>
+      <span className="chipz">₹2,190/day <em>▼ 12%</em></span>
       <span style={{ fontSize: 7, opacity: 0.6, marginLeft: 4 }}>excl. trips</span>
     </div>
     <div className="row2">
-      <div className="owe"><span className="o" style={{ background: '#1d3a30', color: '#2fce96' }}>↓</span><div><small>Owed to you</small><b>₹43,887.43</b></div></div>
+      <div className="owe"><span className="o" style={{ background: '#1d3a30', color: '#2fce96' }}>↓</span><div><small>Owed to you</small><b>₹6,400</b></div></div>
       <div className="owe"><span className="o" style={{ background: '#3a3220', color: '#f0b445' }}>↑</span><div><small>You owe</small><b style={{ color: '#f0b445' }}>₹0</b></div></div>
     </div>
     <div className="sect">Accounts</div>
     <div className="accs">
-      <div className="acc a1"><small>ICICI Bank · ****1000</small><b>₹26,465.94</b><i /></div>
-      <div className="acc a2"><small>****0729 · ICICI Bank</small><b>₹24,431.80</b><i /></div>
-      <div className="acc a3"><small>IDFC</small><b>₹8,120</b><i /></div>
+      <div className="acc a1"><small>ICICI Bank · ****4821</small><b>₹21,400</b><i /></div>
+      <div className="acc a2"><small>****3307 · HDFC Bank</small><b>₹14,830</b><i /></div>
+      <div className="acc a3"><small>SBI · A/c</small><b>₹12,000</b><i /></div>
     </div>
     <div className="pcard" style={{ marginTop: 8 }}>
       <div style={{ fontSize: 9.5, fontWeight: 700, marginBottom: 8 }}>Today by category</div>
@@ -104,30 +104,30 @@ const Friends = () => (
     <div className="pbody">
       <div className="ptitle">Friends</div>
       <div className="sum">
-        <div className="top"><div>Friends owe you<b>₹43,887.43</b></div><div>You owe<b>You owe ₹0</b></div></div>
-        <div className="bot"><span>Your part (after splitting)</span><b style={{ fontSize: 9 }}>₹38,702.90</b></div>
+        <div className="top"><div>Friends owe you<b>₹6,400</b></div><div>You owe<b>You owe ₹0</b></div></div>
+        <div className="bot"><span>Your part (after splitting)</span><b style={{ fontSize: 9 }}>₹41,830</b></div>
       </div>
       <div className="sect">Groups</div>
       <div className="grp">
-        <div className="pcard"><b style={{ fontSize: 9 }}>room</b><small>2 members</small><div style={{ color: '#2fce96', fontSize: 7.5, fontWeight: 700, marginTop: 14 }}>Owed ₹3,555.50</div></div>
+        <div className="pcard"><b style={{ fontSize: 9 }}>Flat</b><small>3 members</small><div style={{ color: '#2fce96', fontSize: 7.5, fontWeight: 700, marginTop: 14 }}>Owed ₹2,200</div></div>
         <div className="pcard ng"><div><div style={{ color: '#2fce96', fontSize: 14 }}>⊕</div>New group</div></div>
       </div>
       <div className="fil"><span className="on">All</span><span>Owes you</span><span>You owe</span><span>Settled</span></div>
-      <FriendRow i="A" name="Akhil" amt="₹16,755.82" />
-      <FriendRow i="S" name="Saikat" amt="₹1,371.75" />
+      <FriendRow i="A" name="Aarav" amt="₹4,200" />
+      <FriendRow i="P" name="Priya" amt="₹2,200" />
     </div>
     <Fab /><Nav active={1} />
   </>
 );
 
 const TXS = [
-  ['Zomato', '22-Oct · 4:11 PM · Me', '₹237.02', 'food', false],
-  ['Uncles', '21-Oct · 10:53 PM · Me + Akhil + abin', '₹1,057', 'oth', true],
-  ['Shiv', '21-Oct · 9:48 PM · Me', '₹75', 'oth', false],
-  ['JAYANTI', '21-Oct · 9:42 PM · abin', '₹100', 'oth', true],
+  ['Zomato', '22-Oct · 4:11 PM · Me', '₹237', 'food', false],
+  ['Burger Club', '21-Oct · 10:53 PM · Me + Aarav + Kabir', '₹1,050', 'oth', true],
+  ['Tea Stall', '21-Oct · 9:48 PM · Me', '₹75', 'oth', false],
+  ['Fresh Mart', '21-Oct · 9:42 PM · Kabir', '₹100', 'oth', true],
   ['HungerBo', '21-Oct · 5:10 PM · Me', '₹122', 'food', false],
-  ['Tirupati Trader', '21-Oct · 2:11 PM · Me', '₹19', 'oth', false],
-  ['Akhil', '21-Oct · 11:09 AM · Akhil', '₹1,000', 'oth', true],
+  ['Corner Store', '21-Oct · 2:11 PM · Me', '₹20', 'oth', false],
+  ['Cinema', '21-Oct · 11:09 AM · Aarav', '₹1,000', 'oth', true],
 ];
 
 const History = () => (
@@ -135,7 +135,7 @@ const History = () => (
     <StatusBar /><TopBar />
     <div className="pbody">
       <div className="hist-h"><span>Recent Expenses</span><span style={{ color: '#8c9a95', letterSpacing: 6 }}>⌕ ⇅ ≡</span></div>
-      <div className="mbar"><span>October</span><span>₹1,01,694.15 spent</span></div>
+      <div className="mbar"><span>October</span><span>₹48,230 spent</span></div>
       {TXS.map(([n, sub, v, kind, split]) => (
         <div className="tx" key={n}>
           <span className={`ti ${kind}`}>{kind === 'food' ? Ic.fork : '•••'}</span>
@@ -152,10 +152,10 @@ const PTS = [60, 38, 52, 46, 70, 64, 72, 58, 74, 70, 66, 72, 40, 68, 74, 72, 70,
 const CW = 236, CH = 80;
 const LINE = PTS.map((y, i) => `${i ? 'L' : 'M'}${((i * CW) / (PTS.length - 1)).toFixed(1)} ${y}`).join(' ');
 const BARS = [
-  ['Other', '₹42,506', 42, '#f0b445', '•'],
-  ['Travel', '₹21,012', 21, '#5b7cf6', '✈'],
-  ['Bills', '₹18,113', 18, '#2fce96', '▤'],
-  ['Shopping', '₹10,442', 10, '#7b6cf6', '◆'],
+  ['Other', '₹18,400', 38, '#f0b445', '•'],
+  ['Travel', '₹9,800', 20, '#5b7cf6', '✈'],
+  ['Bills', '₹8,700', 18, '#2fce96', '▤'],
+  ['Shopping', '₹4,900', 10, '#7b6cf6', '◆'],
 ];
 
 const Insights = () => (
@@ -167,9 +167,9 @@ const Insights = () => (
       </div>
       <div className="pcard">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span style={{ fontSize: 8, color: '#8c9a95' }}>Spent so far</span><span className="up">+77% vs last month</span>
+          <span style={{ fontSize: 8, color: '#8c9a95' }}>Spent so far</span><span className="up">+18% vs last month</span>
         </div>
-        <div className="bigamt">₹1,01,694</div>
+        <div className="bigamt">₹48,230</div>
         <div style={{ fontSize: 6, color: '#8c9a95' }}>Tap or drag on the chart to see a day</div>
         <svg viewBox={`0 0 ${CW} ${CH + 4}`} width="100%" style={{ margin: '8px 0 6px' }}>
           <defs><linearGradient id="ig" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#2fce96" stopOpacity=".35" /><stop offset="1" stopColor="#2fce96" stopOpacity="0" /></linearGradient></defs>
@@ -177,12 +177,12 @@ const Insights = () => (
           <path d={LINE} fill="none" stroke="#2fce96" strokeWidth="1.6" strokeLinejoin="round" />
           <circle cx={CW} cy={PTS[PTS.length - 1]} r="2.5" fill="#2fce96" />
         </svg>
-        <div style={{ fontSize: 7 }}>On pace for ~₹1,27,382 by month end</div>
-        <div style={{ fontSize: 6, color: '#8c9a95' }}>Regular ₹2,854/day + ₹38,901 Goa trip</div>
+        <div style={{ fontSize: 7 }}>On pace for ~₹65,900 by month end</div>
+        <div style={{ fontSize: 6, color: '#8c9a95' }}>Regular ₹2,190/day + ₹9,800 Goa trip</div>
         <div className="stats3">
-          <div><b>₹2,854</b><small>Daily avg (excl. trip)</small></div>
-          <div><b>₹19,902</b><small>Biggest day</small></div>
-          <div style={{ textAlign: 'right' }}><b>98</b><small>Txns</small></div>
+          <div><b>₹2,190</b><small>Daily avg (excl. trip)</small></div>
+          <div><b>₹6,750</b><small>Biggest day</small></div>
+          <div style={{ textAlign: 'right' }}><b>64</b><small>Txns</small></div>
         </div>
       </div>
       <div className="pcard" style={{ marginTop: 7 }}>
@@ -203,32 +203,91 @@ const Insights = () => (
   </>
 );
 
-const ROADS = 'M-10 120 C 60 140, 120 100, 300 150 M40 -10 C 70 120, 50 260, 90 600 M150 -10 C 160 120, 200 220, 190 600 M-10 300 C 80 280, 160 320, 300 290 M-10 420 C 100 400, 200 460, 300 430 M220 -10 C 230 100, 260 160, 300 200 M120 200 L 260 520';
-const CLUSTERS = [[160, 190, 2], [200, 265, 2], [198, 330, 4], [90, 470, 2]];
-const PINS = [[185, 210], [245, 215], [192, 250], [95, 440]];
+/* ---- Map: drawn to match the app's dark Google map (Hinjawadi area) ---- */
+// seeded random so the street grid is identical on every render
+const rand = (() => { let x = 7; return () => ((x = (x * 16807) % 2147483647) / 2147483647); })();
+const MINOR = Array.from({ length: 150 }, () => {
+  const x = rand() * 280 - 10, y = rand() * 600 - 20, a = rand() * Math.PI, l = 10 + rand() * 34;
+  return `M${x.toFixed(1)} ${y.toFixed(1)} l${(Math.cos(a) * l).toFixed(1)} ${(Math.sin(a) * l).toFixed(1)}`;
+}).join(' ');
+const MEDIUM = [
+  'M-5 120 C 40 112, 90 122, 140 118 S 230 110, 270 116',
+  'M20 230 C 60 236, 95 246, 120 262 S 150 300, 175 296',
+  'M150 250 C 190 248, 230 255, 270 252',
+  'M60 400 C 90 420, 120 430, 160 428 S 200 440, 220 470',
+  'M175 300 C 200 330, 210 380, 240 420',
+  'M100 470 C 130 480, 170 470, 210 490',
+  'M200 120 C 205 160, 215 200, 230 240',
+  'M40 330 C 45 360, 55 380, 70 400',
+];
+const MAJOR = [
+  'M-5 152 C 40 160, 70 174, 98 184 S 150 196, 200 199 S 245 203, 270 205', // Hinjawadi Rd
+  'M136 70 C 124 110, 108 150, 98 188', // Dange Chowk Rd
+  'M120 196 C 128 215, 134 236, 138 262 S 150 320, 158 352 S 166 400, 170 430', // Sakhare Vasti Rd
+  'M22 280 C 50 300, 78 318, 98 330 S 128 340, 140 342', // I2it College Rd
+  'M8 150 C 14 190, 22 230, 28 270 S 40 360, 48 430 S 60 520, 70 580', // Rajiv Gandhi MIDC Rd
+  'M190 70 C 205 100, 222 135, 236 165 S 255 200, 262 215', // New Wakad–Hinjawadi Rd
+  'M98 330 C 90 380, 84 420, 80 470', // to Blue Ridge
+];
+const RIVER = 'M-10 470 C 40 455, 90 470, 140 462 S 220 440, 275 452 L 275 470 C 220 460, 150 482, 100 484 S 30 476, -10 488 Z';
+const CLUSTERS = [[116, 192, 2], [135, 228, 3], [132, 253, 2], [66, 391, 2]];
+const PINS = [[142, 197], [228, 201], [57, 368]];
+const label = { fill: '#9aa4a0', fontFamily: 'Inter, sans-serif' };
 
 const MapScreen = () => (
   <>
     <svg className="mapsv" viewBox="0 0 262 566" preserveAspectRatio="xMidYMid slice">
-      <rect width="262" height="566" fill="#1f2523" />
-      <path d={ROADS} stroke="#2c3431" strokeWidth="7" fill="none" />
-      <path d={ROADS} stroke="#39423e" strokeWidth="1.4" fill="none" />
-      <text x="14" y="300" fill="#8e9894" fontSize="13">Hinjawadi</text>
-      <text x="80" y="510" fill="#8e9894" fontSize="7" letterSpacing=".8">BLUE RIDGE</text>
+      <rect width="262" height="566" fill="#1c2421" />
+      <path d={RIVER} fill="#18272a" />
+      <path d={MINOR} stroke="#262f2c" strokeWidth=".8" strokeLinecap="round" fill="none" />
+      <path d={MEDIUM.join(' ')} stroke="#2c3633" strokeWidth="1.8" strokeLinecap="round" fill="none" />
+      <path d={MAJOR.join(' ')} stroke="#344039" strokeWidth="3.4" strokeLinecap="round" fill="none" />
+
+      {/* area + road labels */}
+      <text x="1" y="270" fontSize="11.5" {...label} fill="#aeb8b4">Hinjawadi</text>
+      <text x="9" y="285" fontSize="10" {...label} fill="#aeb8b4">हिंजवडी</text>
+      <text x="163" y="119" fontSize="5.5" letterSpacing=".6" textAnchor="middle" {...label}>BHATEWARA</text>
+      <text x="163" y="126" fontSize="5.5" letterSpacing=".6" textAnchor="middle" {...label}>NAGAR</text>
+      <text x="60" y="211" fontSize="5" textAnchor="middle" {...label} fill="#7f8a86">Hinjewadi</text>
+      <text x="60" y="218" fontSize="5" textAnchor="middle" {...label} fill="#7f8a86">Grampanchayat</text>
+      <text x="60" y="225" fontSize="5" textAnchor="middle" {...label} fill="#7f8a86">Water Tank</text>
+      <text x="74" y="384" fontSize="6.5" letterSpacing=".6" textAnchor="middle" {...label} fill="#b8c1bd">BLUE RIDGE</text>
+      <text fontSize="5.8" {...label} transform="translate(48 164) rotate(24)">Hinjawadi Rd</text>
+      <text fontSize="5.8" {...label} transform="translate(196 196) rotate(4)">Hinjawadi Rd</text>
+      <text fontSize="5.8" {...label} transform="translate(106 160) rotate(-68)">Dange Chowk Rd</text>
+      <text fontSize="5.8" {...label} transform="translate(154 312) rotate(80)">Sakhare Vasti Rd</text>
+      <text fontSize="5.8" {...label} transform="translate(48 306) rotate(30)">I2it College Rd</text>
+      <text fontSize="5.8" {...label} transform="translate(14 176) rotate(76)">Rajiv Gandhi MIDC Rd</text>
+      <text fontSize="5.8" {...label} transform="translate(206 96) rotate(62)">New Wakad - Hinjawadi Rd</text>
+
+      {/* expense clusters */}
       {CLUSTERS.map(([x, y, n]) => (
         <g key={`${x}${y}`}>
-          <circle cx={x} cy={y} r="13" fill="#2fce96" fillOpacity=".25" />
-          <circle cx={x} cy={y} r="9" fill="#2fce96" />
-          <text x={x} y={y + 3} textAnchor="middle" fontSize="8" fontWeight="700" fill="#06120d">{n}</text>
+          <circle cx={x} cy={y} r="13" fill="#2fce96" fillOpacity=".22" />
+          <circle cx={x} cy={y} r="9.5" fill="#33d69c" stroke="#1f8c66" strokeWidth=".8" />
+          <text x={x} y={y + 3} textAnchor="middle" fontSize="8" fontWeight="700" fill="#0c1f17" fontFamily="Inter, sans-serif">{n}</text>
         </g>
       ))}
+      {/* cluster with your location */}
+      <circle cx="131" cy="285" r="13" fill="#2fce96" fillOpacity=".22" />
+      <circle cx="129" cy="282" r="9.5" fill="#33d69c" stroke="#1f8c66" strokeWidth=".8" />
+      <circle cx="131" cy="286" r="9.5" fill="#33d69c" stroke="#1f8c66" strokeWidth=".8" />
+      <circle cx="131" cy="286" r="4.2" fill="#fff" />
+      <circle cx="131" cy="286" r="3.1" fill="#4285f4" />
+      {/* single expenses (money pins) */}
       {PINS.map(([x, y]) => (
-        <g key={`p${x}${y}`}><circle cx={x} cy={y} r="7" fill="#f0b445" /><circle cx={x} cy={y} r="3" fill="#7a4d10" /></g>
+        <g key={`p${x}${y}`}>
+          <circle cx={x} cy={y} r="7.5" fill="#f2a43a" />
+          <text x={x} y={y + 2.6} textAnchor="middle" fontSize="7.5">💸</text>
+        </g>
       ))}
+      <text x="4" y="444" fontSize="9.5" fontWeight="700" fill="#e8ecea" fontFamily="Arial, sans-serif">Google</text>
     </svg>
     <div style={{ position: 'relative', zIndex: 1 }}><StatusBar /><TopBar /></div>
-    <div className="msearch">⌕ Search your expenses by merchant</div>
-    <div className="msheet"><small>This month · 68 in view</small><b>₹51,818.45</b></div>
+    <div className="msearch"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c9d1ce" strokeWidth="2.6" strokeLinecap="round"><circle cx="11" cy="11" r="6" /><path d="m20 20-4-4" /></svg>Search your expenses by merchant</div>
+    <div className="mfab" style={{ top: 126 }}><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#e8ecea" strokeWidth="2.2"><circle cx="12" cy="12" r="5" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" /></svg></div>
+    <div className="mfab" style={{ top: 157 }}><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#e8ecea" strokeWidth="2.2" strokeLinecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" /></svg></div>
+    <div className="msheet"><div><small>This month · 41 in view</small><b>₹22,600</b></div><span className="chev">⌃</span></div>
     <Nav active={2} />
   </>
 );

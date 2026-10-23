@@ -8,13 +8,13 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
   mode 'under' → line runs along the gap under the box, then up into it
 */
 const CALLOUTS = [
-  { side: 'l', anchor: 'date', pad: 10, title: 'Today at a glance', sub: 'Updates with every SMS' },
+  { side: 'l', anchor: 'date', pad: 10, title: 'Today at a glance', sub: 'Today, on your home screen' },
   { side: 'l', anchor: 'total', pad: 10, title: 'Total expenses', sub: 'Plus change vs yesterday' },
   { side: 'l', anchor: 'owed', title: 'Owed to you', sub: 'Across all friends' },
-  { side: 'r', anchor: 'actions', title: 'Scan & add', sub: 'Pay a QR or log cash' },
+  { side: 'r', anchor: 'actions', title: 'Scan & add', sub: 'Scan & Pay or add cash' },
   { side: 'r', anchor: 'avg', title: 'Daily average', sub: 'Trips kept out' },
-  { side: 'r', anchor: 'spent', title: 'Spent today', sub: 'Every expense, live', mode: 'under' },
-  { side: 'r', anchor: 'owe', title: 'You owe', sub: 'Settle in one tap' },
+  { side: 'r', anchor: 'spent', title: 'Spent today', sub: "From today's debits", mode: 'under' },
+  { side: 'r', anchor: 'owe', title: 'You owe', sub: 'Your share to friends' },
 ];
 
 const LABEL_W = 160;
@@ -89,7 +89,7 @@ export default function WidgetCallouts({ children }) {
           <svg className="pointer-events-none absolute inset-0 z-10 overflow-visible" width={geo.width} height={geo.height}>
             {geo.items.map((it) => (
               <g key={it.anchor}>
-                <path d={path(it, geo.w)} fill="none" stroke="rgba(47,206,150,.55)" strokeWidth="1.2" strokeLinejoin="round" />
+                <path d={path(it, geo.w)} fill="none" stroke="rgba(36,139,110,.7)" strokeWidth="1.2" strokeLinejoin="round" />
                 <circle cx={it.target.x} cy={it.target.y} r="7" fill="rgba(47,206,150,.2)" />
                 <circle cx={it.target.x} cy={it.target.y} r="3.5" fill="#2fce96" />
               </g>
@@ -102,7 +102,7 @@ export default function WidgetCallouts({ children }) {
               style={{ top: it.ly, width: LABEL_W, left: it.side === 'l' ? geo.w.l - GAP - 10 - LABEL_W : geo.w.r + GAP + 10 }}
             >
               <b className="block text-xs">{it.title}</b>
-              <span className="text-[11px] text-muted">{it.sub}</span>
+              <span className="text-[11px] opacity-60">{it.sub}</span>
             </div>
           ))}
         </>

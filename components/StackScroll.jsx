@@ -3,9 +3,12 @@ import { useEffect } from 'react';
 
 /*
   Stacking cards: from section 01 on, each card stays pinned while the
-  next one slides over it; the covered card shrinks and dims (--p 0→1).
+  next one slides over it; covered cards shrink, dim and step up (--d),
+  leaving their top edges visible as a deck.
   Desktop only (≥1024px). Styles live in globals.css under .stacking.
 */
+const DECK = 36; // room above each card for the edges of up to 3 cards behind it
+
 export default function StackScroll() {
   useEffect(() => {
     const root = document.documentElement;
@@ -18,13 +21,14 @@ export default function StackScroll() {
       panels = [...document.querySelectorAll('main > section.panel')];
       if (!mq.matches) {
         root.classList.remove('stacking');
-        panels.forEach((p) => { p.style.top = ''; p.style.removeProperty('--p'); });
+        panels.forEach((p) => { p.style.top = ''; p.style.removeProperty('--d'); });
         return;
       }
       root.classList.add('stacking');
       const vh = window.innerHeight;
       // a card taller than the screen pins only once its bottom is visible
-      panels.forEach((p) => { p.style.top = `${Math.min(16, vh - p.offsetHeight - 16)}px`; });
+      const head = (document.querySelector('header')?.offsetHeight || 0) + 16 + DECK;
+      panels.forEach((p) => { p.style.top = `${Math.min(head, vh - p.offsetHeight - 16)}px`; });
       update();
     };
 
@@ -33,12 +37,17 @@ export default function StackScroll() {
       if (!mq.matches || reduce.matches) return;
       const vh = window.innerHeight;
       const footer = document.querySelector('footer');
+      const stick = (panels[0] ? parseFloat(panels[0].style.top) : 108) || 108;
+      // how far each card (and the footer) has slid in over the one before it
+      const arrive = [...panels, footer].map((el) => {
+        if (!el) return 0;
+        const top = el.getBoundingClientRect().top;
+        return Math.min(1, Math.max(0, (vh - top) / (vh - stick)));
+      });
       panels.forEach((p, i) => {
-        const next = panels[i + 1] || footer;
-        if (!next) return;
-        const top = next.getBoundingClientRect().top;
-        const prog = Math.min(1, Math.max(0, (vh - top) / (vh - 16)));
-        p.style.setProperty('--p', prog.toFixed(3));
+        let d = 0;
+        for (let j = i + 1; j < arrive.length; j++) d += arrive[j];
+        p.style.setProperty('--d', Math.min(d, 3.5).toFixed(3));
       });
     };
 
