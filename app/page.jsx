@@ -10,6 +10,7 @@ import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import DownloadButton, { CTA_CAPTION } from '@/components/DownloadButton';
 import { CONTACT_EMAIL, LAUNCHED } from '@/lib/config';
+import { Analytics } from "@vercel/analytics/next"
 
 const sm = { zoom: 'var(--pz-sm)' };
 const xs = { zoom: 'var(--pz-xs)' };
@@ -122,6 +123,7 @@ export default function Page() {
       <HeroParallax />
       <OneOpen name="faq" />
       <SiteHeader />
+      <Analytics />
 
       <main className="mx-auto max-w-[1440px] px-4">
         {/* ============ HERO ============ */}
