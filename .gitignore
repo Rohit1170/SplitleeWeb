@@ -2,3 +2,5 @@ node_modules
 .next
 out
 Claude outputs/
+*.tsbuildinfo
+next-env.d.ts

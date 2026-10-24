@@ -15,7 +15,6 @@ export default function SiteFooter() {
             <img src="/logo.png" alt="" width="36" height="36" className="h-9 w-9" />
             splitlee
           </a>
-          <p className="mt-3 text-xs text-muted">Built solo in Pune, India.</p>
         </div>
         <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#c7d1cc]">
           {links.map(([l, h]) => <a key={l} href={h} className="hover:text-lime">{l}</a>)}

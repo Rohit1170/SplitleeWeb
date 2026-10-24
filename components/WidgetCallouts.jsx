@@ -35,7 +35,9 @@ export default function WidgetCallouts({ children }) {
       const box = el.getBoundingClientRect();
       const widget = el.querySelector('[data-widget]')?.getBoundingClientRect();
       if (!widget) return;
-      const rel = (r) => ({ l: r.left - box.left, r: r.right - box.left, t: r.top - box.top, b: r.bottom - box.top, cx: r.left - box.left + r.width / 2, cy: r.top - box.top + r.height / 2 });
+      // the card may be zoomed to fit the screen (see StackScroll); work in its own units
+      const z = (el.offsetWidth && box.width / el.offsetWidth) || 1;
+      const rel = (r) => ({ l: (r.left - box.left) / z, r: (r.right - box.left) / z, t: (r.top - box.top) / z, b: (r.bottom - box.top) / z, cx: (r.left - box.left + r.width / 2) / z, cy: (r.top - box.top + r.height / 2) / z });
       const w = rel(widget);
       const items = CALLOUTS.map((c) => {
         const node = el.querySelector(`[data-widget] [data-anchor="${c.anchor}"]`);
@@ -60,7 +62,7 @@ export default function WidgetCallouts({ children }) {
           if (list[i].ly - list[i - 1].ly < MIN_SPACING) list[i].ly = list[i - 1].ly + MIN_SPACING;
         }
       }
-      setGeo({ w, items, width: box.width, height: box.height });
+      setGeo({ w, items, width: box.width / z, height: box.height / z });
     };
     measure();
     const ro = new ResizeObserver(measure);

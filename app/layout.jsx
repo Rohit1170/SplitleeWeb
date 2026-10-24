@@ -6,9 +6,9 @@ import '@fontsource/jetbrains-mono/800.css';
 import './globals.css';
 import { SITE_URL } from '@/lib/config';
 
-const TITLE = 'Splitlee — Your bank texts. Splitlee does the rest.';
+const TITLE = 'Splitlee — Your bank texts. Splitlee does the math.';
 const DESCRIPTION =
-  'Splitlee is a free Android app that turns your bank SMS into expenses automatically — split, settle with UPI, and track trips. Fully offline. No account, no cloud.';
+  'Splitlee is a free Android app that turns your bank SMS into expenses automatically — split, settle with UPI, and track trips. No account, no server. Your data stays yours.';
 const OG_IMAGE = { url: '/og.png', width: 1200, height: 630, alt: 'Splitlee — Your bank texts. Splitlee does the math.' };
 
 export const metadata = {

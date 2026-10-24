@@ -1,7 +1,7 @@
-import { DOWNLOAD_URL, LAUNCHED } from '@/lib/config';
+import { DOWNLOAD_URL, COMING_SOON_URL, LAUNCHED } from '@/lib/config';
 
 /* The one download button used everywhere. tone: 'mint' (default) | 'ink'
-   Before launch (LAUNCHED = false) it renders a non-clickable "Coming soon" badge. */
+   Before launch (LAUNCHED = false) it shows "Coming soon to Android" and links to COMING_SOON_URL. */
 export default function DownloadButton({ tone = 'mint', size = 'md', label = 'Download for Android', className = '' }) {
   const tones = {
     mint: 'bg-mint text-ink',
@@ -13,10 +13,10 @@ export default function DownloadButton({ tone = 'mint', size = 'md', label = 'Do
 
   if (!LAUNCHED) {
     return (
-      <span role="status" aria-disabled="true" className={`${base} cursor-default`}>
+      <a href={COMING_SOON_URL} className={`${base} transition-opacity hover:opacity-90`}>
         <svg width={icon} height={icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
         Coming soon to Android
-      </span>
+      </a>
     );
   }
 

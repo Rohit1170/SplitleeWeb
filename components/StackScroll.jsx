@@ -21,13 +21,26 @@ export default function StackScroll() {
       panels = [...document.querySelectorAll('main > section.panel')];
       if (!mq.matches) {
         root.classList.remove('stacking');
-        panels.forEach((p) => { p.style.top = ''; p.style.removeProperty('--d'); });
+        panels.forEach((p) => { p.style.top = ''; p.style.removeProperty('--d'); p.style.removeProperty('--fit'); });
         return;
       }
       root.classList.add('stacking');
       const vh = window.innerHeight;
       // a card taller than the screen pins only once its bottom is visible
       const head = (document.querySelector('header')?.offsetHeight || 0) + 16 + DECK;
+      const avail = vh - head - 16;
+      // shrink a card's content (not the card) until it fits one screen, so every
+      // card sits at the same height and the deck stays even
+      panels.forEach((p) => p.style.removeProperty('--fit'));
+      panels.forEach((p) => {
+        const h = p.offsetHeight;
+        if (h <= avail + 1) return;
+        const cs = getComputedStyle(p);
+        const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+        const fit = Math.max(0.6, (avail - pad) / (h - pad));
+        p.style.setProperty('--fit', fit.toFixed(3));
+      });
+      // a card still taller than the screen pins only once its bottom is visible
       panels.forEach((p) => { p.style.top = `${Math.min(head, vh - p.offsetHeight - 16)}px`; });
       update();
     };

@@ -113,8 +113,8 @@ const Friends = () => (
         <div className="pcard ng"><div><div style={{ color: '#2fce96', fontSize: 14 }}>⊕</div>New group</div></div>
       </div>
       <div className="fil"><span className="on">All</span><span>Owes you</span><span>You owe</span><span>Settled</span></div>
-      <FriendRow i="A" name="Aarav" amt="₹4,200" />
-      <FriendRow i="P" name="Priya" amt="₹2,200" />
+      <FriendRow i="A" name="Akhil" amt="₹4,200" />
+      <FriendRow i="P" name="Abin" amt="₹2,200" />
     </div>
     <Fab /><Nav active={1} />
   </>
@@ -122,12 +122,12 @@ const Friends = () => (
 
 const TXS = [
   ['Zomato', '22-Oct · 4:11 PM · Me', '₹237', 'food', false],
-  ['Burger Club', '21-Oct · 10:53 PM · Me + Aarav + Kabir', '₹1,050', 'oth', true],
+  ['Burger Club', '21-Oct · 10:53 PM · Me + Akhil + Kabir', '₹1,050', 'oth', true],
   ['Tea Stall', '21-Oct · 9:48 PM · Me', '₹75', 'oth', false],
   ['Fresh Mart', '21-Oct · 9:42 PM · Kabir', '₹100', 'oth', true],
   ['HungerBo', '21-Oct · 5:10 PM · Me', '₹122', 'food', false],
   ['Corner Store', '21-Oct · 2:11 PM · Me', '₹20', 'oth', false],
-  ['Cinema', '21-Oct · 11:09 AM · Aarav', '₹1,000', 'oth', true],
+  ['Cinema', '21-Oct · 11:09 AM · Akhil', '₹1,000', 'oth', true],
 ];
 
 const History = () => (

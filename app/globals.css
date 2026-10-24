@@ -183,6 +183,7 @@ input, textarea, [contenteditable="true"], a[href^="mailto:"] { -webkit-user-sel
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 -10px 30px -12px rgba(0, 0, 0, .7);
   will-change: transform, opacity;
 }
+.stacking main > section.panel > * { zoom: var(--fit, 1); }
 .stacking main > section.panel::after {
   content: "";
   position: absolute;

@@ -4,10 +4,12 @@ import Widget from '@/components/Widget';
 import WidgetCallouts from '@/components/WidgetCallouts';
 import StackScroll from '@/components/StackScroll';
 import HeroParallax from '@/components/HeroParallax';
+import OneOpen from '@/components/OneOpen';
+import ContactForm from '@/components/ContactForm';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import DownloadButton, { CTA_CAPTION } from '@/components/DownloadButton';
-import { BANKS, CONTACT_EMAIL, LAUNCHED } from '@/lib/config';
+import { CONTACT_EMAIL, LAUNCHED } from '@/lib/config';
 
 const sm = { zoom: 'var(--pz-sm)' };
 const xs = { zoom: 'var(--pz-xs)' };
@@ -72,7 +74,7 @@ const FEATURES = [
   ['Foreign spends', 'Card spends abroad show the original currency, with the ₹ cost worked out.', 'lime', <><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" /></>],
   ['WhatsApp reminders', 'Reminders go out on WhatsApp or SMS with your UPI QR for the exact amount.', 'dark', <path d="M4 5h16v10H8l-4 4z" />],
   ['Hide amounts', 'One switch hides the numbers when someone is looking.', 'white', <><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" /><path d="M3 3l18 18" /></>],
-  ['Works offline', 'No account, no cloud, no internet permission.', 'dark', <path d="M2 2l20 20M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 5-2.8M19 13a10 10 0 0 0-2-1.5M12 20h.01" />],
+  ['Works offline', 'No account and no server. Everything except map tiles and backup works without internet.', 'dark', <path d="M2 2l20 20M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 5-2.8M19 13a10 10 0 0 0-2-1.5M12 20h.01" />],
 ];
 const TILE = {
   mint: 'bg-mint text-ink',
@@ -84,7 +86,7 @@ const TILE_ICON = { mint: 'text-ink', lime: 'text-ink', white: 'text-mint-deep',
 
 const PRIVACY = [
   ['Read on-device', 'Parsing happens on your phone. Splitlee has no server to send it to.', <><rect x="6" y="2" width="12" height="20" rx="3" /><path d="M11 18h2" /></>],
-  ['No account, no cloud', 'Nothing to sign up for, nothing to leak.', <><path d="M7 18a5 5 0 0 1-.6-9.96A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9z" /><path d="M4 4l16 16" /></>],
+  ['No account, no server', 'Nothing to sign up for. Optional backup goes to your own Google Drive, not to us.', <><path d="M7 18a5 5 0 0 1-.6-9.96A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9z" /><path d="M4 4l16 16" /></>],
   ['OTPs are never touched', 'OTP, offer and personal messages are rejected; only bank transaction alerts are read.', <><rect x="5" y="10" width="14" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></>],
   ['No bank login. Ever.', 'Splitlee never asks for your bank credentials.', <><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z" /><path d="m9 12 2 2 4-4" /></>],
 ];
@@ -92,24 +94,24 @@ const PRIVACY = [
 const COMPARE = [
   ['Entering expenses', 'Automatic from bank SMS', 'Manual, every time'],
   ['Free plan limits', 'Unlimited', 'Capped at a few expenses a day, with ads'],
-  ['Account needed', 'None — fully offline', 'Email sign-up required'],
+  ['Account needed', 'None — no sign-up', 'Email sign-up required'],
   ['Settling up in India', 'WhatsApp reminder with your UPI QR', 'No UPI integration'],
-  ['Your data', 'Stays on your phone', 'Stored on their servers'],
+  ['Your data', 'Stays on your phone (optional backup to your own Drive)', 'Stored on their servers'],
 ];
 
 const FAQ = [
   ['Is Splitlee free?', 'Yes. Free to download and use.'],
-  ['Is it safe to give SMS access?', 'Splitlee reads bank transaction alerts on your phone only. It has no internet permission, no account and no server — your data physically cannot be uploaded. OTPs and personal messages are ignored.'],
+  ['Is it safe to give SMS access?', "Splitlee reads bank transaction alerts on your phone only. There's no account and no server. Your data is only ever uploaded if you turn on backup, and then only to your own Google Drive. OTPs and personal messages are ignored."],
   ['Which banks and UPI apps work?', 'Most Indian banks and UPI apps that send debit SMS or notifications — HDFC, SBI, ICICI, Axis, Kotak, GPay, PhonePe, Paytm and more.'],
   ['Is there an iPhone version?', 'Not yet. Splitlee is Android-first because bank-SMS capture works best there.'],
   ['Do my friends need the app to pay me back?', 'No. They get a WhatsApp reminder with your UPI QR and pay from any UPI app.'],
-  ['Does it work offline?', 'Completely. No internet is needed, ever.'],
+  ['Does it work offline?', 'Yes. Tracking, splitting and reminders work without internet. Only the map needs a connection to load. Backup, if you turn it on, needs internet.'],
 ];
 
 const INSTALL = [
   ['Download the APK', "Tap download. It's a direct, signed build from us — no store account needed."],
   ['Allow the install', "Android will ask once if your browser can install apps. That's normal for direct downloads — tap Allow."],
-  ['Grant two permissions', "SMS and notifications. That's how Splitlee sees your bank's debit alerts — everything is read on your phone, nothing is uploaded."],
+  ['Grant two permissions', "SMS and notifications. That's how Splitlee sees your bank's debit alerts — your SMS are read on your phone and never uploaded."],
 ];
 
 export default function Page() {
@@ -118,6 +120,7 @@ export default function Page() {
       <Reveal />
       <StackScroll />
       <HeroParallax />
+      <OneOpen name="faq" />
       <SiteHeader />
 
       <main className="mx-auto max-w-[1440px] px-4">
@@ -136,12 +139,12 @@ export default function Page() {
             <Chip d={30} className="-bottom-[34px] -left-[7%] rotate-[3deg] border-white/10 bg-[#16241e] text-mint">+₹263 owed</Chip>
             <Chip d={-24} className="-bottom-[44px] -right-[5%] -rotate-[4deg] border-transparent bg-lime text-ink">settled ✓</Chip>
 
-            <h1 style={drift(-6)} className="transform transition-transform duration-700 ease-out pb-[.3em] pt-[.1em] text-center font-brand text-[clamp(44px,11vw,128px)] font-normal leading-[1.25] text-lime drop-shadow-[0_10px_40px_rgba(200,242,109,.18)]">splitlee</h1>
+            <div aria-hidden="true" style={drift(-6)} className="transform transition-transform duration-700 ease-out pb-[.3em] pt-[.1em] text-center font-brand text-[clamp(44px,11vw,128px)] font-normal leading-[1.25] text-lime drop-shadow-[0_10px_40px_rgba(200,242,109,.18)]">splitlee</div>
           </div>
 
-          <p className="mx-auto mt-6 max-w-[520px] text-center text-sm text-[#c5d0cb] sm:text-[15px]">
+          <h1 className="mx-auto mt-6 max-w-[520px] text-center text-sm font-normal text-[#c5d0cb] sm:text-[15px]">
             Your bank texts. Splitlee does the math. Split, settle and track — all on your phone.
-          </p>
+          </h1>
           <div className="mt-6 flex flex-wrap justify-center gap-2.5">
             <DownloadButton />
             <a href="#how" className="inline-flex items-center rounded-full border border-white/15 px-5 py-3 text-sm font-semibold hover:border-white/30">See how it works</a>
@@ -151,7 +154,7 @@ export default function Page() {
           <div className="relative mt-10 flex flex-wrap items-end justify-between gap-4 lg:mt-auto">
             <div style={drift(12)} className={`rounded-2xl border border-white/[.07] bg-[#0f1f18]/80 px-4 py-3 backdrop-blur ${MOVE}`}>
               <b className="block text-lg">+₹1,400</b>
-              <span className="text-[11px] text-muted">settled this week · Priya</span>
+              <span className="text-[11px] text-muted">settled this week · Abin</span>
             </div>
             <div style={drift(-10)} className={`flex items-center gap-2 rounded-full border border-white/[.07] bg-[#0f1f18]/80 px-3 py-2 text-[11px] text-[#c5d0cb] ${MOVE}`}>
               <span className="grid h-5 w-5 place-items-center rounded-md bg-mint text-[10px] font-bold text-ink">₹</span>
@@ -159,24 +162,12 @@ export default function Page() {
             </div>
             <Tile d={-16} className="!static hidden h-11 w-11 rotate-6 bg-lime text-ink sm:grid"><Svg size={20}><path d="M5 12l4 4 10-10" /></Svg></Tile>
           </div>
-        </section>
 
-        {/* ============ SUPPORTED BANKS ============ */}
-        <section aria-labelledby="banks-h" className="my-4 rounded-[24px] border border-white/[.06] bg-[#0f1a16] px-5 py-6 sm:rounded-[28px] sm:px-8">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-8">
-            <h2 id="banks-h" className="flex-none text-sm font-semibold text-white">Works with your bank and your UPI apps</h2>
-            <ul className="flex flex-wrap gap-2">
-              {BANKS.map((b) => (
-                <li key={b} className="rounded-full border border-white/10 bg-white/[.04] px-3 py-1.5 text-xs text-[#c5d0cb]">{b}</li>
-              ))}
-            </ul>
-          </div>
-          <p className="mt-3 text-[11px] text-muted">…and most other Indian banks and UPI apps.</p>
         </section>
 
         {/* ============ 01 SMS TRACKING ============ */}
         <span aria-hidden="true" className="snap-mark" />
-        <section id="features" className="panel gpanel">
+        <section id="features" className="scroll-mt-20 lg:scroll-mt-[108px] panel gpanel">
           <Split>
             <div className="rv">
               <div className="eyebrow">01 — SMS tracking</div>
@@ -221,7 +212,7 @@ export default function Page() {
             <div className="rounded-2xl bg-ink p-4 text-white">
               <span className="mb-3 block text-lime"><Svg size={20}><rect x="5" y="10" width="14" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></Svg></span>
               <b className="text-sm">Stays private</b>
-              <p className="mt-1 text-xs text-muted">Read on-device. Nothing leaves your phone.</p>
+              <p className="mt-1 text-xs text-muted">Read on-device. No account, no server.</p>
             </div>
           </div>
         </section>
@@ -242,7 +233,7 @@ export default function Page() {
 
         {/* ============ 04 SMS → SPLIT ============ */}
         <span aria-hidden="true" className="snap-mark" />
-        <section id="how" className="panel on-light bg-glass text-ink">
+        <section id="how" className="scroll-mt-20 lg:scroll-mt-[108px] panel on-light bg-glass text-ink">
           <div className="rv"><div className="eyebrow">04 — From SMS to split</div><h2 className="h2">From bank SMS to split in one<br className="hidden lg:block" /> tap.</h2></div>
           <div className="rv mt-10 grid items-center gap-4 lg:grid-cols-[1fr_auto_1fr_auto_1fr]">
             <div>
@@ -269,7 +260,7 @@ export default function Page() {
                   <div className="grid h-12 w-12 flex-none grid-cols-4 gap-px rounded-md bg-white p-1" aria-hidden="true">
                     {'1011010110010111'.split('').map((b, i) => <i key={i} className={b === '1' ? 'bg-ink' : 'bg-white'} />)}
                   </div>
-                  <p className="!mt-0 !text-xs">Aarav and Priya owe ₹263 each. Your UPI QR goes with the reminder.</p>
+                  <p className="!mt-0 !text-xs">Akhil and Abin owe ₹263 each. Your UPI QR goes with the reminder.</p>
                 </div>
               </div>
               <p className="mt-2.5 text-[11px] opacity-60">3. Friends pay you back</p>
@@ -309,7 +300,7 @@ export default function Page() {
               <div className="mt-6 grid max-w-[460px] gap-3 sm:grid-cols-2">
                 <div className="flex items-center gap-3 rounded-2xl border border-white/[.08] bg-[#16241e] px-3.5 py-3 text-white">
                   <span className="av !h-8 !w-8 !text-xs">A</span>
-                  <div className="min-w-0"><b className="block text-xs">Reminder sent to Aarav</b><small className="block truncate text-[11px] text-muted">₹4,200 · pay via UPI QR</small></div>
+                  <div className="min-w-0"><b className="block text-xs">Reminder sent to Akhil</b><small className="block truncate text-[11px] text-muted">₹4,200 · pay via UPI QR</small></div>
                   <span className="ml-auto text-mint">✓</span>
                 </div>
                 <div className="rounded-2xl bg-mint px-3.5 py-3 text-ink">
@@ -396,14 +387,14 @@ export default function Page() {
 
         {/* ============ 11 PRIVACY ============ */}
         <span aria-hidden="true" className="snap-mark" />
-        <section id="privacy" className="panel bg-[linear-gradient(180deg,#10201a,#0d1713)]">
+        <section id="privacy" className="scroll-mt-20 lg:scroll-mt-[108px] panel bg-[linear-gradient(180deg,#10201a,#0d1713)]">
           <div className="pointer-events-none absolute -right-20 -top-20 !w-[420px] h-[420px] rounded-full bg-[radial-gradient(circle,rgba(47,206,150,.16),transparent_65%)]" aria-hidden="true" />
           <div className="relative grid items-end gap-4 lg:grid-cols-[1.1fr_1fr]">
             <div className="rv">
               <div className="eyebrow">11 — Privacy</div>
-              <h2 className="h2">Your money data never<br className="hidden lg:block" /> leaves your phone.</h2>
+              <h2 className="h2">Your money data stays yours.</h2>
             </div>
-            <p className="rv text-[13px] text-muted">Splitlee has no account, no cloud and no internet permission. Everything it reads stays on your phone.</p>
+            <p className="rv text-[13px] text-muted">Splitlee has no account and no server. Your data lives on your phone, and only goes to your own Google Drive if you turn on backup.</p>
           </div>
           <div className="relative mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {PRIVACY.map(([t, d, icon]) => (
@@ -415,7 +406,7 @@ export default function Page() {
             ))}
           </div>
           <div className="relative mt-6 flex flex-wrap items-center gap-2.5 font-mono text-[12px] text-mint">
-            {['✓ No internet permission', '✓ No analytics', '✓ No ads'].map((t) => (
+            {['✓ No server', '✓ No analytics', '✓ No ads'].map((t) => (
               <span key={t} className="rounded-full border border-[#23493b] bg-[#13261f] px-3 py-1.5">{t}</span>
             ))}
             <a href="/privacy-policy" className="ml-auto font-sans text-sm text-white underline decoration-mint/50 underline-offset-4 hover:text-lime">Read the full privacy policy →</a>
@@ -448,7 +439,7 @@ export default function Page() {
 
         {/* ============ 13 FAQ ============ */}
         <span aria-hidden="true" className="snap-mark" />
-        <section id="faq" className="panel gpanel">
+        <section id="faq" className="scroll-mt-20 lg:scroll-mt-[108px] panel gpanel">
           <div className="grid gap-8 lg:grid-cols-[1fr_1.5fr] lg:gap-14">
             <div className="rv">
               <div className="eyebrow">13 — FAQ</div>
@@ -457,7 +448,7 @@ export default function Page() {
             </div>
             <div className="rv divide-y divide-white/[.07] rounded-2xl border border-white/[.07] bg-white/[.02]">
               {FAQ.map(([q, a], i) => (
-                <details key={q} className="group px-5" open={i === 0}>
+                <details key={q} name="faq" className="group px-5" open={i === 0}>
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-sm font-semibold [&::-webkit-details-marker]:hidden">
                     {q}
                     <span className="grid h-6 w-6 flex-none place-items-center rounded-full bg-white/[.06] text-mint transition-transform group-open:rotate-45">+</span>
@@ -524,17 +515,21 @@ export default function Page() {
               {CONTACT_EMAIL}
             </a>
           </div>
-          <div className="overflow-hidden rounded-2xl bg-white">
+          <ContactForm />
+          {/* Ovoform embed — kept for later. To switch back, replace <ContactForm /> above with this block.
+          <div className="overflow-hidden rounded-2xl border border-white/[.06] bg-[#0f1c16]">
             <iframe
               src="https://app.ovoform.com/f/sKtGaog9"
               title="Contact Splitlee"
               width="100%"
-              height="600"
+              height="500"
               loading="lazy"
               allow="fullscreen"
-              className="block h-[600px] w-full max-w-full border-0"
+              style={{ colorScheme: 'dark' }}
+              className="block h-[500px] w-full max-w-full border-0 bg-[#0f1c16]"
             />
           </div>
+          */}
         </section>
         <SiteFooter />
       </footer>
