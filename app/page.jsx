@@ -63,7 +63,7 @@ const Tile = ({ className, children, d = 16 }) => (
 );
 
 const Chip = ({ className, children, d = 20 }) => (
-  <span style={drift(d)} className={`absolute hidden items-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1.5 font-sans text-xs font-bold tracking-normal shadow-[0_16px_32px_-12px_rgba(0,0,0,.6)] lg:inline-flex ${MOVE} ${className}`}>{children}</span>
+  <span style={drift(d)} className={`absolute inline-flex items-center gap-1 whitespace-nowrap rounded-full border px-2 py-1 font-sans text-[10px] font-bold tracking-normal shadow-[0_16px_32px_-12px_rgba(0,0,0,.6)] sm:text-[11px] lg:gap-1.5 lg:px-3 lg:py-1.5 lg:text-xs ${MOVE} ${className}`}>{children}</span>
 );
 
 /* 10 — small things (every tile is a shipped feature) */
@@ -126,18 +126,19 @@ export default function Page() {
       <main className="mx-auto max-w-[1440px] px-4">
         {/* ============ HERO ============ */}
         <section id="hero" className="relative mt-4 flex snap-start scroll-mt-[108px] flex-col overflow-hidden rounded-[28px] bg-[radial-gradient(90%_70%_at_50%_30%,#1a3a2b_0%,#10241b_45%,#0b1712_100%)] px-5 pb-8 pt-10 sm:px-8 lg:min-h-[calc(100svh-124px)]">
-          <div className="relative mx-auto mt-6 w-full max-w-[860px] sm:mt-12 lg:mt-auto">
-            <Tile d={-20} className="hidden sm:grid -top-6 left-[8%] h-11 w-11 -rotate-12 bg-lime text-ink sm:-top-10 sm:h-14 sm:w-14 lg:-top-16 lg:left-[4%]"><Svg size={22}><rect x="3" y="6" width="18" height="13" rx="2" /><path d="M7 12h4" /></Svg></Tile>
-            <Tile d={-22} className="-top-8 right-[10%] h-10 w-10 rotate-12 border border-white/10 bg-[#1d3a2d] text-mint sm:-top-12 sm:h-12 sm:w-12"><Svg size={18}><path d="M3 12h4l3-8 4 16 3-8h4" /></Svg></Tile>
-            <Tile d={34} className="hidden sm:grid left-0 top-[46%] -rotate-[8deg] rounded-xl bg-mint px-2.5 py-1.5 text-[11px] text-ink sm:-left-6 sm:px-3 sm:text-sm">split</Tile>
-            <Tile d={-30} className="hidden sm:grid right-0 top-[52%] rotate-[6deg] rounded-xl border border-white/10 bg-[#1a2d24] px-2.5 py-1.5 font-mono text-[11px] text-lime sm:-right-6 sm:text-xs">₹1,050</Tile>
+          <div className="relative mx-auto mt-2 w-full max-w-[860px] pb-14 pt-24 lg:mt-auto lg:pb-0 lg:pt-0">
+            {/* below lg: blocks sit in bands above/below and beside the wordmark; lg+: original spots */}
+            <Tile d={-20} className="left-[14%] top-11 h-9 w-9 -rotate-12 bg-lime text-ink lg:-top-16 lg:left-[4%] lg:h-14 lg:w-14"><Svg size={18}><rect x="3" y="6" width="18" height="13" rx="2" /><path d="M7 12h4" /></Svg></Tile>
+            <Tile d={-22} className="right-0 top-3 h-9 w-9 rotate-12 border border-white/10 bg-[#1d3a2d] text-mint lg:-top-12 lg:right-[10%] lg:h-12 lg:w-12"><Svg size={16}><path d="M3 12h4l3-8 4 16 3-8h4" /></Svg></Tile>
+            <Tile d={34} className="left-0 top-[84px] sm:top-[104px] -rotate-[8deg] rounded-xl bg-mint px-2 py-1 text-[10px] text-ink lg:-left-6 lg:top-[46%] lg:px-3 lg:py-1.5 lg:text-sm">split</Tile>
+            <Tile d={-30} className="bottom-2 left-[42%] sm:bottom-auto sm:left-auto sm:right-0 sm:top-[130px] rotate-[6deg] rounded-xl border border-white/10 bg-[#1a2d24] px-2 py-1 font-mono text-[10px] text-lime lg:-right-6 lg:top-[52%] lg:px-2.5 lg:py-1.5 lg:text-xs">₹1,050</Tile>
 
-            <Chip d={18} className="-top-[64px] left-[34%] -rotate-3 border-white/10 bg-[#16241e] text-white"><span className="h-2 w-2 rounded-full bg-coral" />Zomato ₹237</Chip>
-            <Chip d={-26} className="-left-[15%] -top-[34px] rotate-[-6deg] border-transparent bg-white text-ink">UPI</Chip>
-            <Chip d={24} className="-right-[13%] top-[14%] rotate-[5deg] border-white/10 bg-[#16241e] text-white">✈ Goa trip</Chip>
-            <Chip d={-18} className="-top-[60px] right-[30%] rotate-[4deg] border-mint/40 bg-transparent text-mint">÷ 3 ways</Chip>
-            <Chip d={30} className="-bottom-[34px] -left-[7%] rotate-[3deg] border-white/10 bg-[#16241e] text-mint">+₹263 owed</Chip>
-            <Chip d={-24} className="-bottom-[44px] -right-[5%] -rotate-[4deg] border-transparent bg-lime text-ink">settled ✓</Chip>
+            <Chip d={18} className="left-[36%] top-0 -rotate-3 border-white/10 bg-[#16241e] text-white lg:-top-[64px] lg:left-[34%]"><span className="h-1.5 w-1.5 rounded-full bg-coral lg:h-2 lg:w-2" />Zomato ₹237</Chip>
+            <Chip d={-26} className="left-0 top-2 rotate-[-6deg] border-transparent bg-white text-ink lg:-left-[15%] lg:-top-[34px]">UPI</Chip>
+            <Chip d={24} className="right-0 top-[60px] rotate-[5deg] border-white/10 bg-[#16241e] text-white lg:-right-[13%] lg:top-[14%]">✈ Goa trip</Chip>
+            <Chip d={-18} className="left-[42%] top-[58px] rotate-[4deg] border-mint/40 bg-transparent text-mint lg:-top-[60px] lg:left-auto lg:right-[30%]">÷ 3 ways</Chip>
+            <Chip d={30} className="bottom-3 left-[3%] rotate-[3deg] border-white/10 bg-[#16241e] text-mint lg:-bottom-[34px] lg:-left-[7%]">+₹263 owed</Chip>
+            <Chip d={-24} className="bottom-1 right-[4%] -rotate-[4deg] border-transparent bg-lime text-ink lg:-bottom-[44px] lg:-right-[5%]">settled ✓</Chip>
 
             <div aria-hidden="true" style={drift(-6)} className="transform transition-transform duration-700 ease-out pb-[.3em] pt-[.1em] text-center font-brand text-[clamp(44px,11vw,128px)] font-normal leading-[1.25] text-lime drop-shadow-[0_10px_40px_rgba(200,242,109,.18)]">splitlee</div>
           </div>
