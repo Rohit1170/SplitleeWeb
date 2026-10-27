@@ -126,8 +126,10 @@ export default function Page() {
       <Analytics />
 
       <main className="mx-auto max-w-[1440px] px-4">
+        
         {/* ============ HERO ============ */}
         <section id="hero" className="relative mt-4 flex snap-start scroll-mt-[108px] flex-col overflow-hidden rounded-[28px] bg-[radial-gradient(90%_70%_at_50%_30%,#1a3a2b_0%,#10241b_45%,#0b1712_100%)] px-5 pb-8 pt-10 sm:px-8 lg:min-h-[calc(100svh-124px)]">
+          
           <div className="relative mx-auto mt-2 w-full max-w-[860px] pb-14 pt-24 lg:mt-auto lg:pb-0 lg:pt-0">
             {/* below lg: blocks sit in bands above/below and beside the wordmark; lg+: original spots */}
             <Tile d={-20} className="left-[14%] top-11 h-9 w-9 -rotate-12 bg-lime text-ink lg:-top-16 lg:left-[4%] lg:h-14 lg:w-14"><Svg size={18}><rect x="3" y="6" width="18" height="13" rx="2" /><path d="M7 12h4" /></Svg></Tile>
@@ -153,6 +155,9 @@ export default function Page() {
             <a href="#how" className="inline-flex items-center rounded-full border border-white/15 px-5 py-3 text-sm font-semibold hover:border-white/30">See how it works</a>
           </div>
           <p className="mt-3 text-center text-[11px] text-muted">{CTA_CAPTION}</p>
+          <a href="https://smollaunch.com" target="_blank" rel="noopener">
+  <img src="https://smollaunch.com/badges/featured-dark.svg" alt="Splitlee — Featured on Smol Launch" loading="lazy" width="250" height="60" />
+</a>
 
           <div className="relative mt-10 flex flex-wrap items-end justify-between gap-4 lg:mt-auto">
             <div style={drift(12)} className={`rounded-2xl border border-white/[.07] bg-[#0f1f18]/80 px-4 py-3 backdrop-blur ${MOVE}`}>
@@ -539,3 +544,7 @@ export default function Page() {
     </>
   );
 }
+
+
+
+
